@@ -3,46 +3,63 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ▼ SEO: 基本メタタグ -->
 <title>きさきヒストリア｜教科書の太字キーワードから女性たちの物語へ</title>
 <meta name="description" content="壬申の乱、フランス革命、楊貴妃、則天武后…教科書の太字キーワードから、その時代を生きた日本史・世界史の女性たちの動画にたどり着くサイト">
+<link rel="canonical" href="https://kisaki-historia.netlify.app/">
+
+<!-- ▼ SEO: OGP（SNSシェア・Googleプレビュー用） -->
+<meta property="og:type"        content="website">
+<meta property="og:url"         content="https://kisaki-historia.netlify.app/">
+<meta property="og:title"       content="きさきヒストリア｜教科書の太字キーワードから女性たちの物語へ">
+<meta property="og:description" content="壬申の乱、フランス革命、楊貴妃、則天武后…教科書の太字キーワードから、その時代を生きた日本史・世界史の女性たちの動画にたどり着くサイト">
+<meta property="og:locale"      content="ja_JP">
+<meta property="og:site_name"   content="きさきヒストリア">
+<meta property="og:image"       content="https://kisaki-historia.netlify.app/ogp.png">
+<meta property="og:image:width"  content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt"   content="きさきヒストリア — 教科書の太字キーワードから女性たちの物語へ">
+
+<!-- ▼ SEO: Twitter Card -->
+<meta name="twitter:card"        content="summary_large_image">
+<meta name="twitter:title"       content="きさきヒストリア｜教科書の太字キーワードから女性たちの物語へ">
+<meta name="twitter:description" content="壬申の乱、フランス革命、楊貴妃、則天武后…教科書の太字キーワードから、その時代を生きた日本史・世界史の女性たちの動画にたどり着くサイト">
+<meta name="twitter:image"       content="https://kisaki-historia.netlify.app/ogp.png">
+
 <style>
 :root{
-  --bg:#FBF7F0;--bg-card:#FFFFFF;--text:#2C2A24;--text-sub:#6B665A;
-  --accent:#9C2D2D;--accent-light:#C25555;--border:#E5DFD2;
-  --chip:#F2EBDA;--chip-hover:#E9DFC2;
-  --era-asuka:#D9C5E0;--era-nara:#F2D69B;--era-heian:#F4C7C7;
-  --era-kamakura:#A5B5C9;--era-muromachi:#C8D4A8;--era-sengoku:#E4A89A;
-  --era-edo:#A5BBC9;--era-world:#B7C9D8;--era-china:#E8C29A;--era-asia:#C5D4A8;
-  --era-nordic:#9FCFE6;--era-east:#D2A6B5;
+--bg:#FBF7F0;--bg-card:#FFFFFF;--text:#2C2A24;--text-sub:#6B665A;
+--accent:#9C2D2D;--accent-light:#C25555;--border:#E5DFD2;
+--chip:#F2EBDA;--chip-hover:#E9DFC2;
+--era-asuka:#D9C5E0;--era-nara:#F2D69B;--era-heian:#F4C7C7;
+--era-kamakura:#A5B5C9;--era-muromachi:#C8D4A8;--era-sengoku:#E4A89A;
+--era-edo:#A5BBC9;--era-world:#B7C9D8;--era-china:#E8C29A;--era-asia:#C5D4A8;
+--era-nordic:#9FCFE6;--era-east:#D2A6B5;
 }
 *{box-sizing:border-box}
 html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:"Hiragino Sans","Yu Gothic","Noto Sans JP",sans-serif;line-height:1.7}
 .container{max-width:960px;margin:0 auto;padding:24px 16px}
-
 header.site{padding:32px 16px 20px;text-align:center;border-bottom:1px solid var(--border)}
 .site h1{margin:0;font-size:28px;font-weight:600;letter-spacing:.05em;color:var(--accent)}
 .site .sub{margin:8px 0 0;font-size:14px;color:var(--text-sub)}
 .site .note{margin:10px auto 0;max-width:560px;font-size:12px;color:var(--text-sub);line-height:1.7;opacity:.85}
 .site .note a{color:var(--accent);text-decoration:none;border-bottom:1px dotted var(--accent-light)}
 .site .note a:hover{border-bottom-style:solid}
-
 .region-toggle{display:inline-flex;margin:18px 0 0;background:#fff;border:1px solid var(--border);border-radius:24px;padding:3px;box-shadow:0 1px 3px rgba(0,0,0,0.04);gap:2px}
 .region-btn{border:0;background:transparent;padding:8px 18px;font-size:13px;color:var(--text-sub);cursor:pointer;border-radius:20px;font-family:inherit;transition:all .15s;white-space:nowrap}
 .region-btn.active{background:var(--accent);color:#fff;font-weight:500}
 .region-btn:hover:not(.active){background:var(--chip)}
-
 .view-toggle{display:inline-flex;margin:14px 0 0;background:#fff;border:1px solid var(--border);border-radius:8px;padding:2px;gap:1px}
 .view-btn{border:0;background:transparent;padding:6px 14px;font-size:12px;color:var(--text-sub);cursor:pointer;border-radius:6px;font-family:inherit;transition:all .15s;white-space:nowrap}
 .view-btn.active{background:var(--accent);color:#fff;font-weight:500}
 .view-btn:hover:not(.active){background:var(--chip)}
-
 .search-area{padding:32px 0 8px}
 .search-box{display:flex;gap:8px;background:#fff;border:2px solid var(--border);border-radius:14px;padding:6px;align-items:center;box-shadow:0 2px 8px rgba(0,0,0,.04)}
 .search-box:focus-within{border-color:var(--accent-light)}
 .search-box input{flex:1;border:0;outline:0;padding:14px 12px;font-size:16px;background:transparent;color:var(--text)}
 .search-box .clear{border:0;background:transparent;cursor:pointer;color:var(--text-sub);padding:8px 12px;font-size:18px;display:none}
 .search-box .clear.visible{display:block}
-
 .suggest-label{margin:18px 0 4px;font-size:13px;color:var(--text-sub)}
 .chip-group{margin:6px 0 4px}
 .chip-group .era-label{display:inline-block;font-size:11px;color:var(--text-sub);margin-right:8px;min-width:5em;padding-top:6px;vertical-align:top}
@@ -51,18 +68,15 @@ header.site{padding:32px 16px 20px;text-align:center;border-bottom:1px solid var
 .chip:hover{background:var(--chip-hover)}
 .chip.active{background:var(--accent);color:#fff;border-color:var(--accent)}
 @media(max-width:520px){
-  .chip-group .era-label{display:block;min-width:0;margin:8px 0 4px}
-  .chip-group .chip-row{display:flex;width:100%}
+.chip-group .era-label{display:block;min-width:0;margin:8px 0 4px}
+.chip-group .chip-row{display:flex;width:100%}
 }
-
 .tabs{display:flex;gap:4px;margin:20px 0 0;border-bottom:1px solid var(--border);overflow-x:auto;-webkit-overflow-scrolling:touch}
 .tab{padding:8px 14px;font-size:13px;color:var(--text-sub);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;flex-shrink:0}
 .tab.active{color:var(--accent);border-bottom-color:var(--accent);font-weight:500}
-
 .results-summary{margin:18px 0 12px;font-size:14px;color:var(--text-sub)}
 .cards{display:grid;grid-template-columns:1fr;gap:14px}
 @media(min-width:640px){.cards{grid-template-columns:1fr 1fr}}
-
 .card{display:block;background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:16px;text-decoration:none;color:var(--text);transition:transform .15s,box-shadow .15s,border-color .15s}
 .card:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.06);border-color:var(--accent-light)}
 .card .name{font-size:18px;font-weight:600;margin:0 0 4px}
@@ -76,12 +90,10 @@ header.site{padding:32px 16px 20px;text-align:center;border-bottom:1px solid var
 .card .event-tag{font-size:11px;padding:2px 8px;background:#FAEEDA;border-radius:6px;color:#854F0B}
 .card .play{display:inline-block;margin-top:10px;font-size:12px;color:var(--accent);font-weight:500}
 .card .play::after{content:" →";font-size:14px}
-
 .no-results{text-align:center;padding:32px 16px;color:var(--text-sub)}
 .world-coming-soon{background:#fff;border:1px dashed var(--border);border-radius:14px;padding:32px 24px;margin:18px 0;text-align:center;color:var(--text-sub)}
 .world-coming-soon h3{margin:0 0 8px;color:var(--accent);font-size:18px;font-weight:500}
 .world-coming-soon p{margin:6px 0;font-size:14px;line-height:1.7}
-
 .event-info{background:#FFF8EC;border:1px solid #E5D7B0;border-left:4px solid var(--accent);border-radius:10px;padding:14px 18px;margin:0 0 18px;display:none}
 .event-info.visible{display:block}
 .event-info .ei-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px;margin-bottom:6px}
@@ -92,7 +104,6 @@ header.site{padding:32px 16px 20px;text-align:center;border-bottom:1px solid var
 .event-info .ei-related .label{margin-right:4px}
 .event-info .ei-related .mini-chip{display:inline-block;padding:3px 10px;background:#fff;border:1px solid #E5D7B0;border-radius:14px;font-size:12px;color:var(--text);cursor:pointer}
 .event-info .ei-related .mini-chip:hover{background:var(--chip-hover)}
-
 .era-asuka .era-tag{background:var(--era-asuka)}
 .era-nara .era-tag{background:var(--era-nara)}
 .era-heian .era-tag{background:var(--era-heian)}
@@ -105,13 +116,10 @@ header.site{padding:32px 16px 20px;text-align:center;border-bottom:1px solid var
 .era-asia .era-tag{background:var(--era-asia)}
 .era-nordic .era-tag{background:var(--era-nordic)}
 .era-east .era-tag{background:var(--era-east)}
-
 footer.site{margin:48px 0 24px;padding-top:24px;border-top:1px solid var(--border);font-size:12px;color:var(--text-sub);text-align:center}
 footer.site a{color:var(--accent);text-decoration:none}
 footer.site a:hover{text-decoration:underline}
-
 mark{background:#FFE599;color:inherit;padding:0 2px;border-radius:2px}
-
 .timeline{display:none;background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:0;margin:18px 0;overflow-x:auto;-webkit-overflow-scrolling:touch}
 .timeline.visible{display:block}
 .timeline-inner{position:relative;min-width:2800px;padding:8px 0 0}
@@ -138,7 +146,6 @@ mark{background:#FFE599;color:inherit;padding:0 2px;border-radius:2px}
 .timeline-legend-item{display:inline-flex;align-items:center;gap:5px}
 .timeline-legend-dot{width:10px;height:10px;border-radius:50%;display:inline-block}
 .timeline-event-band{position:absolute;top:0;bottom:30px;background:rgba(255,229,153,0.25);border-left:1px solid #BA7517;border-right:1px solid #BA7517;pointer-events:none;z-index:0}
-
 .modal-backdrop{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);display:none;align-items:center;justify-content:center;z-index:100;padding:20px}
 .modal-backdrop.visible{display:flex}
 .modal{background:#fff;border-radius:14px;max-width:520px;width:100%;max-height:90vh;overflow-y:auto;padding:24px;box-shadow:0 12px 32px rgba(0,0,0,0.3);position:relative}
@@ -160,198 +167,186 @@ mark{background:#FFE599;color:inherit;padding:0 2px;border-radius:2px}
 </head>
 <body>
 <header class="site">
-  <h1>きさきヒストリア</h1>
-  <p class="sub">教科書の太字キーワードから、その時代を生きた女性の波乱万丈の物語へ。</p>
-  <p class="note">YouTubeチャンネル「<a href="https://www.youtube.com/@%E5%92%B2%E7%86%8A" target="_blank" rel="noopener">咲熊</a>」の歴史解説動画を、歴史学習に役立てるためのサイトです。</p>
-  <div class="region-toggle" role="tablist" aria-label="範囲の切り替え">
-    <button class="region-btn" data-region="all" role="tab">すべて</button>
-    <button class="region-btn" data-region="日本" role="tab">日本史</button>
-    <button class="region-btn" data-region="世界" role="tab">世界史</button>
-  </div>
-  <div class="view-toggle" role="tablist" aria-label="表示モード">
-    <button class="view-btn active" data-view="cards">📋 一覧</button>
-    <button class="view-btn" data-view="timeline">📊 同時代タイムライン</button>
-  </div>
-</header>
-
-<main class="container">
-
-  <section class="search-area">
-    <div class="search-box">
-      <input id="q" type="search" placeholder="例：壬申の乱、応仁の乱、フランス革命、楊貴妃…" autocomplete="off">
-      <button class="clear" id="clear" aria-label="クリア">×</button>
-    </div>
-
-    <p class="suggest-label">教科書でよく見るキーワード（時代順）</p>
-
-    <div class="chips chips-jp" id="event-chips-jp">
-      <div class="chip-group">
-        <span class="era-label">古代</span>
-        <div class="chip-row">
-          <span class="chip" data-q="大化の改新">大化の改新</span>
-          <span class="chip" data-q="壬申の乱">壬申の乱</span>
-          <span class="chip" data-q="平城京遷都">平城京遷都</span>
-          <span class="chip" data-q="大仏開眼">大仏開眼</span>
-        </div>
-      </div>
-      <div class="chip-group">
-        <span class="era-label">平安</span>
-        <div class="chip-row">
-          <span class="chip" data-q="平安京遷都">平安京遷都</span>
-          <span class="chip" data-q="薬子の変">薬子の変</span>
-          <span class="chip" data-q="応天門の変">応天門の変</span>
-          <span class="chip" data-q="源氏物語">源氏物語</span>
-          <span class="chip" data-q="枕草子">枕草子</span>
-          <span class="chip" data-q="保元の乱">保元の乱</span>
-          <span class="chip" data-q="平治の乱">平治の乱</span>
-          <span class="chip" data-q="源平合戦">源平合戦</span>
-        </div>
-      </div>
-      <div class="chip-group">
-        <span class="era-label">鎌倉・室町</span>
-        <div class="chip-row">
-          <span class="chip" data-q="鎌倉幕府成立">鎌倉幕府成立</span>
-          <span class="chip" data-q="承久の乱">承久の乱</span>
-          <span class="chip" data-q="元弘の乱">元弘の乱</span>
-          <span class="chip" data-q="建武の新政">建武の新政</span>
-          <span class="chip" data-q="応仁の乱">応仁の乱</span>
-        </div>
-      </div>
-      <div class="chip-group">
-        <span class="era-label">戦国・安土桃山</span>
-        <div class="chip-row">
-          <span class="chip" data-q="桶狭間の戦い">桶狭間の戦い</span>
-          <span class="chip" data-q="本能寺の変">本能寺の変</span>
-          <span class="chip" data-q="賤ヶ岳の戦い">賤ヶ岳の戦い</span>
-          <span class="chip" data-q="関ヶ原の戦い">関ヶ原の戦い</span>
-        </div>
-      </div>
-      <div class="chip-group">
-        <span class="era-label">江戸</span>
-        <div class="chip-row">
-          <span class="chip" data-q="大坂の陣">大坂の陣</span>
-          <span class="chip" data-q="江戸幕府成立">江戸幕府成立</span>
-          <span class="chip" data-q="大奥">大奥</span>
-          <span class="chip" data-q="生類憐れみの令">生類憐れみの令</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="chips chips-world" id="event-chips-world" style="display:none">
-      <div class="chip-group">
-        <span class="era-label">西欧</span>
-        <div class="chip-row">
-          <span class="chip" data-q="十字軍">十字軍</span>
-          <span class="chip" data-q="百年戦争">百年戦争</span>
-          <span class="chip" data-q="薔薇戦争">薔薇戦争</span>
-          <span class="chip" data-q="レコンキスタ">レコンキスタ</span>
-          <span class="chip" data-q="イタリア・ルネサンス">イタリア・ルネサンス</span>
-          <span class="chip" data-q="イギリス宗教改革">イギリス宗教改革</span>
-          <span class="chip" data-q="ユグノー戦争">ユグノー戦争</span>
-          <span class="chip" data-q="三十年戦争">三十年戦争</span>
-          <span class="chip" data-q="名誉革命">名誉革命</span>
-          <span class="chip" data-q="七年戦争">七年戦争</span>
-          <span class="chip" data-q="フランス革命">フランス革命</span>
-          <span class="chip" data-q="ナポレオン戦争">ナポレオン戦争</span>
-          <span class="chip" data-q="産業革命">産業革命</span>
-          <span class="chip" data-q="ヴィクトリア朝">ヴィクトリア朝</span>
-        </div>
-      </div>
-      <div class="chip-group">
-        <span class="era-label">中国</span>
-        <div class="chip-row">
-          <span class="chip" data-q="殷周革命">殷周革命</span>
-          <span class="chip" data-q="呉越戦争">呉越戦争</span>
-          <span class="chip" data-q="前漢建国">前漢建国</span>
-          <span class="chip" data-q="八王の乱">八王の乱</span>
-          <span class="chip" data-q="南北朝（中国）">南北朝（中国）</span>
-          <span class="chip" data-q="隋の中国統一">隋の中国統一</span>
-          <span class="chip" data-q="武周の革命">武周の革命</span>
-          <span class="chip" data-q="安史の乱">安史の乱</span>
-          <span class="chip" data-q="明清交替">明清交替</span>
-          <span class="chip" data-q="中国四大美女">中国四大美女</span>
-          <span class="chip" data-q="中国三大悪女">中国三大悪女</span>
-        </div>
-      </div>
-      <div class="chip-group">
-        <span class="era-label">アジア・他</span>
-        <div class="chip-row">
-          <span class="chip" data-q="ヘレニズム時代">ヘレニズム時代</span>
-          <span class="chip" data-q="ムガル帝国全盛期">ムガル帝国全盛期</span>
-          <span class="chip" data-q="オスマン帝国全盛期">オスマン帝国全盛期</span>
-          <span class="chip" data-q="ローマ帝政">ローマ帝政</span>
-          <span class="chip" data-q="神聖ローマ帝国成立">神聖ローマ帝国成立</span>
-          <span class="chip" data-q="ロシア革命">ロシア革命</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="tabs tabs-all" id="all-tabs" style="display:none">
-      <span class="tab active" data-major-era="all">すべて</span>
-      <span class="tab" data-major-era="古代">古代</span>
-      <span class="tab" data-major-era="中世">中世</span>
-      <span class="tab" data-major-era="近世">近世</span>
-      <span class="tab" data-major-era="近代">近代</span>
-    </div>
-
-    <div class="tabs tabs-jp" id="era-tabs">
-      <span class="tab active" data-era="all">すべて</span>
-      <span class="tab" data-era="飛鳥">飛鳥</span>
-      <span class="tab" data-era="奈良">奈良</span>
-      <span class="tab" data-era="平安">平安</span>
-      <span class="tab" data-era="鎌倉">鎌倉</span>
-      <span class="tab" data-era="室町">室町</span>
-      <span class="tab" data-era="戦国">戦国</span>
-      <span class="tab" data-era="江戸">江戸</span>
-    </div>
-
-    <div class="tabs tabs-world" id="region-tabs" style="display:none">
-      <span class="tab active" data-world-region="all">すべて</span>
-      <span class="tab" data-world-region="西欧">西欧</span>
-      <span class="tab" data-world-region="北欧">北欧</span>
-      <span class="tab" data-world-region="東欧・ロシア">東欧・ロシア</span>
-      <span class="tab" data-world-region="中国">中国</span>
-      <span class="tab" data-world-region="アジア">アジア</span>
-      <span class="tab" data-world-region="その他">その他</span>
-    </div>
-  </section>
-
-  <div class="event-info" id="event-info"></div>
-  <p class="results-summary" id="summary"></p>
-  <div class="cards" id="cards"></div>
-  <div class="no-results" id="empty" style="display:none">
-    該当する人物が見つかりませんでした。<br>別のキーワードを試してみてください。
-  </div>
-  <div class="timeline" id="timeline"></div>
-  <div class="world-coming-soon" id="world-empty" style="display:none">
-    <h3>該当する世界史の人物が見つかりませんでした</h3>
-    <p>世界史編は現在89名を収録、随時追加中です。<br>「フランス革命」「楊貴妃」「則天武后」などのチップから探してみてください。</p>
-    <p style="margin-top:14px"><strong>「すべて」</strong>に切り替えると日本史と合わせて検索できます。</p>
-  </div>
-
-  <footer class="site">
-    <p>授業の予習・復習や定期テスト対策に、ぜひ活用してください。<br>
-    動画はすべて<a href="https://www.youtube.com/@%E5%92%B2%E7%86%8A" target="_blank" rel="noopener">YouTubeチャンネル「咲熊」</a>で公開されています。</p>
-    <p>収録：人物129名（日本史40・世界史89）／事件解説74件（試作版）</p>
-  </footer>
-
-</main>
-
-<div class="modal-backdrop" id="modal-backdrop">
-  <div class="modal" id="modal" role="dialog" aria-modal="true">
-    <button class="close" id="modal-close" aria-label="閉じる">×</button>
-    <h3 id="modal-name">―</h3>
-    <p class="modal-reading" id="modal-reading"></p>
-    <div class="modal-meta" id="modal-meta"></div>
-    <p class="modal-summary" id="modal-summary"></p>
-    <div class="modal-events" id="modal-events"></div>
-    <div class="modal-actions">
-      <button class="modal-secondary" id="modal-cancel">閉じる</button>
-      <a class="modal-link" id="modal-link" href="#" target="_blank" rel="noopener">咲熊さんの動画を見る →</a>
-    </div>
-  </div>
+<h1>きさきヒストリア</h1>
+<p class="sub">教科書の太字キーワードから、その時代を生きた女性の波乱万丈の物語へ。</p>
+<p class="note">YouTubeチャンネル「<a href="https://www.youtube.com/@%E5%92%B2%E7%86%8A" target="_blank" rel="noopener">咲熊</a>」の歴史解説動画を、歴史学習に役立てるためのサイトです。</p>
+<div class="region-toggle" role="tablist" aria-label="範囲の切り替え">
+<button class="region-btn" data-region="all" role="tab">すべて</button>
+<button class="region-btn" data-region="日本" role="tab">日本史</button>
+<button class="region-btn" data-region="世界" role="tab">世界史</button>
 </div>
-
+<div class="view-toggle" role="tablist" aria-label="表示モード">
+<button class="view-btn active" data-view="cards">📋 一覧</button>
+<button class="view-btn" data-view="timeline">📊 同時代タイムライン</button>
+</div>
+</header>
+<main class="container">
+<section class="search-area">
+<div class="search-box">
+<input id="q" type="search" placeholder="例：壬申の乱、応仁の乱、フランス革命、楊貴妃…" autocomplete="off">
+<button class="clear" id="clear" aria-label="クリア">×</button>
+</div>
+<p class="suggest-label">教科書でよく見るキーワード（時代順）</p>
+<div class="chips chips-jp" id="event-chips-jp">
+<div class="chip-group">
+<span class="era-label">古代</span>
+<div class="chip-row">
+<span class="chip" data-q="大化の改新">大化の改新</span>
+<span class="chip" data-q="壬申の乱">壬申の乱</span>
+<span class="chip" data-q="平城京遷都">平城京遷都</span>
+<span class="chip" data-q="大仏開眼">大仏開眼</span>
+</div>
+</div>
+<div class="chip-group">
+<span class="era-label">平安</span>
+<div class="chip-row">
+<span class="chip" data-q="平安京遷都">平安京遷都</span>
+<span class="chip" data-q="薬子の変">薬子の変</span>
+<span class="chip" data-q="応天門の変">応天門の変</span>
+<span class="chip" data-q="源氏物語">源氏物語</span>
+<span class="chip" data-q="枕草子">枕草子</span>
+<span class="chip" data-q="保元の乱">保元の乱</span>
+<span class="chip" data-q="平治の乱">平治の乱</span>
+<span class="chip" data-q="源平合戦">源平合戦</span>
+</div>
+</div>
+<div class="chip-group">
+<span class="era-label">鎌倉・室町</span>
+<div class="chip-row">
+<span class="chip" data-q="鎌倉幕府成立">鎌倉幕府成立</span>
+<span class="chip" data-q="承久の乱">承久の乱</span>
+<span class="chip" data-q="元弘の乱">元弘の乱</span>
+<span class="chip" data-q="建武の新政">建武の新政</span>
+<span class="chip" data-q="応仁の乱">応仁の乱</span>
+</div>
+</div>
+<div class="chip-group">
+<span class="era-label">戦国・安土桃山</span>
+<div class="chip-row">
+<span class="chip" data-q="桶狭間の戦い">桶狭間の戦い</span>
+<span class="chip" data-q="本能寺の変">本能寺の変</span>
+<span class="chip" data-q="賤ヶ岳の戦い">賤ヶ岳の戦い</span>
+<span class="chip" data-q="関ヶ原の戦い">関ヶ原の戦い</span>
+</div>
+</div>
+<div class="chip-group">
+<span class="era-label">江戸</span>
+<div class="chip-row">
+<span class="chip" data-q="大坂の陣">大坂の陣</span>
+<span class="chip" data-q="江戸幕府成立">江戸幕府成立</span>
+<span class="chip" data-q="大奥">大奥</span>
+<span class="chip" data-q="生類憐れみの令">生類憐れみの令</span>
+</div>
+</div>
+</div>
+<div class="chips chips-world" id="event-chips-world" style="display:none">
+<div class="chip-group">
+<span class="era-label">西欧</span>
+<div class="chip-row">
+<span class="chip" data-q="十字軍">十字軍</span>
+<span class="chip" data-q="百年戦争">百年戦争</span>
+<span class="chip" data-q="薔薇戦争">薔薇戦争</span>
+<span class="chip" data-q="レコンキスタ">レコンキスタ</span>
+<span class="chip" data-q="イタリア・ルネサンス">イタリア・ルネサンス</span>
+<span class="chip" data-q="イギリス宗教改革">イギリス宗教改革</span>
+<span class="chip" data-q="ユグノー戦争">ユグノー戦争</span>
+<span class="chip" data-q="三十年戦争">三十年戦争</span>
+<span class="chip" data-q="名誉革命">名誉革命</span>
+<span class="chip" data-q="七年戦争">七年戦争</span>
+<span class="chip" data-q="フランス革命">フランス革命</span>
+<span class="chip" data-q="ナポレオン戦争">ナポレオン戦争</span>
+<span class="chip" data-q="産業革命">産業革命</span>
+<span class="chip" data-q="ヴィクトリア朝">ヴィクトリア朝</span>
+</div>
+</div>
+<div class="chip-group">
+<span class="era-label">中国</span>
+<div class="chip-row">
+<span class="chip" data-q="殷周革命">殷周革命</span>
+<span class="chip" data-q="呉越戦争">呉越戦争</span>
+<span class="chip" data-q="前漢建国">前漢建国</span>
+<span class="chip" data-q="八王の乱">八王の乱</span>
+<span class="chip" data-q="南北朝（中国）">南北朝（中国）</span>
+<span class="chip" data-q="隋の中国統一">隋の中国統一</span>
+<span class="chip" data-q="武周の革命">武周の革命</span>
+<span class="chip" data-q="安史の乱">安史の乱</span>
+<span class="chip" data-q="明清交替">明清交替</span>
+<span class="chip" data-q="中国四大美女">中国四大美女</span>
+<span class="chip" data-q="中国三大悪女">中国三大悪女</span>
+</div>
+</div>
+<div class="chip-group">
+<span class="era-label">アジア・他</span>
+<div class="chip-row">
+<span class="chip" data-q="ヘレニズム時代">ヘレニズム時代</span>
+<span class="chip" data-q="ムガル帝国全盛期">ムガル帝国全盛期</span>
+<span class="chip" data-q="オスマン帝国全盛期">オスマン帝国全盛期</span>
+<span class="chip" data-q="ローマ帝政">ローマ帝政</span>
+<span class="chip" data-q="神聖ローマ帝国成立">神聖ローマ帝国成立</span>
+<span class="chip" data-q="ロシア革命">ロシア革命</span>
+</div>
+</div>
+</div>
+<div class="tabs tabs-all" id="all-tabs" style="display:none">
+<span class="tab active" data-major-era="all">すべて</span>
+<span class="tab" data-major-era="古代">古代</span>
+<span class="tab" data-major-era="中世">中世</span>
+<span class="tab" data-major-era="近世">近世</span>
+<span class="tab" data-major-era="近代">近代</span>
+</div>
+<div class="tabs tabs-jp" id="era-tabs">
+<span class="tab active" data-era="all">すべて</span>
+<span class="tab" data-era="飛鳥">飛鳥</span>
+<span class="tab" data-era="奈良">奈良</span>
+<span class="tab" data-era="平安">平安</span>
+<span class="tab" data-era="鎌倉">鎌倉</span>
+<span class="tab" data-era="室町">室町</span>
+<span class="tab" data-era="戦国">戦国</span>
+<span class="tab" data-era="江戸">江戸</span>
+</div>
+<div class="tabs tabs-world" id="region-tabs" style="display:none">
+<span class="tab active" data-world-region="all">すべて</span>
+<span class="tab" data-world-region="西欧">西欧</span>
+<span class="tab" data-world-region="北欧">北欧</span>
+<span class="tab" data-world-region="東欧・ロシア">東欧・ロシア</span>
+<span class="tab" data-world-region="中国">中国</span>
+<span class="tab" data-world-region="アジア">アジア</span>
+<span class="tab" data-world-region="その他">その他</span>
+</div>
+</section>
+<div class="event-info" id="event-info"></div>
+<p class="results-summary" id="summary"></p>
+<div class="cards" id="cards"></div>
+<div class="no-results" id="empty" style="display:none">
+該当する人物が見つかりませんでした。<br>別のキーワードを試してみてください。
+</div>
+<div class="timeline" id="timeline"></div>
+<div class="world-coming-soon" id="world-empty" style="display:none">
+<h3>該当する世界史の人物が見つかりませんでした</h3>
+<p>世界史編は現在89名を収録、随時追加中です。<br>「フランス革命」「楊貴妃」「則天武后」などのチップから探してみてください。</p>
+<p style="margin-top:14px"><strong>「すべて」</strong>に切り替えると日本史と合わせて検索できます。</p>
+</div>
+<footer class="site">
+<p>授業の予習・復習や定期テスト対策に、ぜひ活用してください。<br>
+動画はすべて<a href="https://www.youtube.com/@%E5%92%B2%E7%86%8A" target="_blank" rel="noopener">YouTubeチャンネル「咲熊」</a>で公開されています。</p>
+<p>収録：人物129名（日本史40・世界史89）／事件解説74件（試作版）</p>
+<p style="margin-top:8px;opacity:.7">動画の著作権はYouTubeチャンネル「咲熊」に帰属します。</p>
+</footer>
+</main>
+<div class="modal-backdrop" id="modal-backdrop">
+<div class="modal" id="modal" role="dialog" aria-modal="true">
+<button class="close" id="modal-close" aria-label="閉じる">×</button>
+<h3 id="modal-name">―</h3>
+<p class="modal-reading" id="modal-reading"></p>
+<div class="modal-meta" id="modal-meta"></div>
+<p class="modal-summary" id="modal-summary"></p>
+<div class="modal-events" id="modal-events"></div>
+<div class="modal-actions">
+<button class="modal-secondary" id="modal-cancel">閉じる</button>
+<a class="modal-link" id="modal-link" href="#" target="_blank" rel="noopener">咲熊さんの動画を見る →</a>
+</div>
+</div>
+</div>
 <script src="app.js"></script>
 </body>
 </html>
