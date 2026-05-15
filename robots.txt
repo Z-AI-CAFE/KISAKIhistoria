@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://kisaki-historia.netlify.app/sitemap.xml
+Sitemap: https://z-ai-cafe.github.io/KISAKIhistoria/sitemap.xml
