@@ -615,6 +615,13 @@ async function init(){
     ]);
     DATA = await resData.json();
     EVENTS = await resEvents.json();
+    // フッターの収録数を動的に更新
+    const jpCount = DATA.filter(p => p.country === '日本').length;
+    const worldCount = DATA.filter(p => p.country && p.country !== '日本').length;
+    const footerCountEl = document.getElementById('footer-count');
+    if (footerCountEl) {
+      footerCountEl.textContent = '収録：人物' + DATA.length + '名（日本史' + jpCount + '・世界史' + worldCount + '）／事件解説' + Object.keys(EVENTS).length + '件（試作版）';
+    }
     bindEvents();
     render();
   }catch(err){
