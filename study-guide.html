@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>観劇ヒストリーガイド ―― さくっと予習、もっと深掘り</title>
+<meta name="description" content="作品名を入力するだけで、登場人物のモデルになった実在の王妃・貴族女性のYouTube動画が見つかる観劇予習ガイド">
+<style>
+:root{
+  --bg:#FBF7F0;--bg-card:#FFFFFF;--text:#2C2A24;--text-sub:#6B665A;
+  --accent:#9C2D2D;--accent-light:#C25555;--border:#E5DFD2;
+  --chip:#F2EBDA;--chip-hover:#E9DFC2;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--text);
+  font-family:"Hiragino Sans","Yu Gothic","Noto Sans JP",sans-serif;line-height:1.7}
+.container{max-width:760px;margin:0 auto;padding:24px 16px}
+
+header.site{padding:36px 16px 24px;text-align:center;border-bottom:1px solid var(--border);background:var(--bg)}
+.site-title{margin:0;font-size:30px;font-weight:700;letter-spacing:.04em;color:var(--accent);line-height:1.3}
+.site-title span{display:block;font-size:13px;font-weight:400;color:var(--text-sub);margin-top:6px;letter-spacing:.06em}
+.site-desc{max-width:600px;margin:14px auto 0;font-size:13px;color:var(--text-sub);line-height:1.8;text-align:left}
+.channel-note{margin:10px auto 0;font-size:12px;color:var(--text-sub);text-align:center}
+.channel-note a{color:var(--accent);text-decoration:none;border-bottom:1px dotted var(--accent-light)}
+
+.search-section{padding:28px 0 8px}
+.search-label{font-size:14px;color:var(--text-sub);margin:0 0 8px;font-weight:500}
+.search-box{display:flex;gap:8px;background:#fff;border:2px solid var(--border);
+  border-radius:14px;padding:6px;align-items:center;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.search-box:focus-within{border-color:var(--accent-light)}
+.search-box input{flex:1;border:0;outline:0;padding:12px 14px;font-size:17px;
+  background:transparent;color:var(--text);font-family:inherit}
+.search-box input::placeholder{color:#B8B0A0;font-size:15px}
+.search-btn{border:0;background:var(--accent);color:#fff;padding:10px 20px;
+  border-radius:10px;font-size:15px;cursor:pointer;font-family:inherit;
+  font-weight:500;transition:background .15s;white-space:nowrap;display:flex;align-items:center;gap:6px}
+.search-btn:hover{background:#7E2424}
+.search-btn:disabled{background:#C8BFAF;cursor:not-allowed}
+
+.examples{margin:10px 0 0;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.examples-label{font-size:12px;color:var(--text-sub)}
+.ex-chip{display:inline-block;padding:4px 12px;background:#fff;border:1px solid var(--border);
+  border-radius:14px;font-size:12px;color:var(--text-sub);cursor:pointer;transition:all .15s}
+.ex-chip:hover{background:var(--chip);color:var(--text)}
+
+.api-settings{margin:16px 0 0}
+.api-toggle{background:transparent;border:1px solid var(--border);color:var(--text-sub);
+  font-size:12px;padding:4px 12px;border-radius:8px;cursor:pointer;font-family:inherit;transition:all .15s}
+.api-toggle:hover{background:var(--chip)}
+.api-panel{display:none;background:#fff;border:1px solid var(--border);border-radius:10px;
+  padding:14px;margin-top:8px}
+.api-panel.open{display:block}
+.api-panel label{font-size:12px;color:var(--text-sub);display:block;margin-bottom:6px}
+.api-panel .api-row{display:flex;gap:8px;align-items:center}
+.api-panel input[type=password]{flex:1;border:1px solid var(--border);border-radius:8px;
+  padding:7px 10px;font-size:13px;font-family:inherit;outline:0}
+.api-panel input[type=password]:focus{border-color:var(--accent-light)}
+.api-panel .save-btn{border:0;background:var(--accent);color:#fff;padding:7px 14px;
+  border-radius:8px;font-size:12px;cursor:pointer;font-family:inherit;white-space:nowrap}
+.api-panel .save-btn:hover{background:#7E2424}
+.api-panel .api-note{font-size:11px;color:var(--text-sub);margin-top:6px}
+.api-panel .api-note a{color:var(--accent);text-decoration:none}
+.api-status{display:inline-block;font-size:11px;margin-left:8px}
+.api-status.ok{color:#2D7D2D}
+.api-status.ng{color:#9C2D2D}
+
+.status-area{min-height:40px;padding:8px 0}
+.status-msg{font-size:14px;color:var(--text-sub);display:flex;align-items:center;gap:8px}
+.spinner{width:16px;height:16px;border:2px solid var(--border);border-top-color:var(--accent);
+  border-radius:50%;animation:spin .7s linear infinite;flex-shrink:0}
+@keyframes spin{to{transform:rotate(360deg)}}
+.error-msg{background:#FFF0F0;border:1px solid #E8B0B0;border-radius:8px;padding:10px 14px;
+  font-size:13px;color:#7E2424;display:block}
+
+.analysis-card{background:#fff;border:1px solid var(--border);border-radius:12px;
+  padding:14px 18px;margin:0 0 20px;font-size:13px}
+.analysis-card h3{margin:0 0 10px;font-size:14px;color:var(--text-sub);font-weight:500}
+.analysis-row{display:flex;gap:8px;flex-wrap:wrap;align-items:flex-start;margin-bottom:6px}
+.analysis-label{font-size:12px;color:var(--text-sub);min-width:70px;padding-top:3px;flex-shrink:0}
+.tag-list{display:flex;flex-wrap:wrap;gap:4px}
+.a-tag{display:inline-block;padding:3px 10px;background:var(--chip);border-radius:10px;font-size:12px;color:var(--text)}
+.a-tag.era{background:#E8F0FF;color:#2A4480}
+.a-tag.theme{background:#E8F8E8;color:#1A5E1A}
+
+.results-area{margin-top:4px}
+.section-head{display:flex;align-items:center;gap:10px;margin:0 0 14px}
+.section-head h2{margin:0;font-size:16px;font-weight:600;color:var(--text)}
+.section-head .count{font-size:12px;color:var(--text-sub)}
+
+.section-main{background:#FFF8F0;border:1px solid #E8C89A;border-radius:16px;padding:20px;margin-bottom:20px}
+.section-main .section-head h2{color:#7A3000}
+.section-related{background:#F5F8FF;border:1px solid #B8C8E8;border-radius:16px;padding:20px;margin-bottom:20px}
+.section-related .section-head h2{color:#1A3A6A}
+.section-era-note{font-size:12px;color:#4A6A9A;background:#DCE8FF;border-radius:8px;
+  padding:8px 12px;margin-bottom:14px;display:flex;align-items:center;gap:6px}
+
+.cards{display:grid;grid-template-columns:1fr;gap:12px}
+@media(min-width:600px){.cards{grid-template-columns:1fr 1fr}}
+
+.card{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+  padding:14px;cursor:pointer;display:block;
+  transition:transform .15s,box-shadow .15s,border-color .15s;position:relative}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.07);border-color:var(--accent-light)}
+.card .name{font-size:17px;font-weight:600;margin:0 0 3px;color:var(--text)}
+.card .years{font-size:11px;color:var(--text-sub);margin:0 0 6px}
+.card .era-row{display:flex;gap:5px;flex-wrap:wrap;margin:0 0 8px}
+.card .era-tag{display:inline-block;padding:2px 9px;border-radius:9px;font-size:11px;background:#E8F0FF;color:#1A3A6A}
+.card .country-tag{display:inline-block;padding:2px 9px;border-radius:9px;font-size:11px;background:#F0EAE0;color:#5F5E5A}
+.card .summary{font-size:12px;color:#4A4640;line-height:1.6;margin:0 0 10px;
+  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.card .play-btn{display:inline-flex;align-items:center;gap:4px;font-size:12px;color:var(--accent);font-weight:500}
+.card .play-btn::after{content:" →"}
+.card .match-badge{position:absolute;top:10px;right:10px;font-size:10px;padding:2px 7px;
+  background:#FFE0B2;border-radius:6px;color:#7A3000}
+.card .match-badge.era-badge{background:#DCE8FF;color:#1A3A6A}
+
+.star-tip{background:#FFFBEC;border:1px solid #E8D898;border-radius:12px;padding:14px 18px;
+  margin:4px 0 0;display:flex;gap:10px;align-items:flex-start}
+.star-tip .star{font-size:22px;flex-shrink:0}
+.star-tip p{margin:0;font-size:13px;color:#5A5030;line-height:1.7}
+.star-tip a{color:var(--accent)}
+
+.no-results{text-align:center;padding:28px 16px;color:var(--text-sub);font-size:14px}
+
+.modal-backdrop{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.5);
+  display:none;align-items:center;justify-content:center;z-index:100;padding:16px}
+.modal-backdrop.open{display:flex}
+.modal{background:#fff;border-radius:16px;max-width:500px;width:100%;
+  max-height:90vh;overflow-y:auto;padding:24px;box-shadow:0 12px 32px rgba(0,0,0,.25);position:relative}
+.modal .close-btn{position:absolute;top:12px;right:12px;background:transparent;border:0;
+  font-size:22px;cursor:pointer;color:var(--text-sub);padding:4px 8px;line-height:1}
+.modal .close-btn:hover{color:var(--text)}
+.modal h3{margin:0 0 4px;font-size:21px;color:var(--accent);font-weight:700}
+.modal .m-years{font-size:12px;color:var(--text-sub);margin:0 0 10px}
+.modal .m-tags{display:flex;flex-wrap:wrap;gap:5px;margin:0 0 14px}
+.modal .m-tags span{display:inline-block;padding:3px 10px;border-radius:10px;font-size:12px;background:var(--chip);color:var(--text)}
+.modal .m-summary{font-size:14px;line-height:1.8;margin:0 0 16px;color:var(--text)}
+.modal .m-events{display:flex;flex-wrap:wrap;gap:5px;margin:0 0 18px}
+.modal .m-events span{font-size:11px;padding:2px 9px;background:#FAEEDA;border-radius:6px;color:#854F0B}
+.modal .m-actions{display:flex;gap:8px;justify-content:flex-end;padding-top:14px;border-top:1px solid var(--border)}
+.modal .m-close{background:transparent;border:1px solid var(--border);color:var(--text-sub);
+  padding:8px 16px;border-radius:8px;cursor:pointer;font-size:13px;font-family:inherit}
+.modal .m-watch{display:inline-block;padding:10px 20px;background:var(--accent);color:#fff;
+  border-radius:8px;text-decoration:none;font-size:13px;font-weight:500}
+.modal .m-watch:hover{background:#7E2424}
+
+footer.site{margin:40px 0 24px;padding-top:20px;border-top:1px solid var(--border);
+  font-size:12px;color:var(--text-sub);text-align:center}
+footer.site a{color:var(--accent);text-decoration:none}
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="container" style="padding-top:0;padding-bottom:0">
+    <h1 class="site-title">
+      観劇ヒストリーガイド
+      <span>さくっと予習、もっと深掘り</span>
+    </h1>
+    <p class="site-desc">
+      『ハムレット』『ベルサイユのばら』『源氏物語』……作品を観る前に、関連する時代背景や実在の女性たちを知りたい。
+      そんなときは、作品名を入力するだけ。登場人物のモデルになった実在の王妃や貴族女性、その時代の恋愛や権力争いが、咲熊さんのチャンネルの動画で明らかになります。
+      観劇前の予習に、帰り道の深掘りに。女性たちの視点から、歴史を楽しめます。
+    </p>
+    <p class="channel-note">
+      動画：YouTubeチャンネル「<a href="https://www.youtube.com/@%E5%92%B2%E7%86%8A" target="_blank" rel="noopener">咲熊</a>」／
+      <a href="./index.html">きさきヒストリア（人物一覧）→</a>
+    </p>
+  </div>
+</header>
+
+<main class="container">
+
+  <section class="search-section">
+    <p class="search-label">作品名を入力してください</p>
+    <div class="search-box">
+      <input id="q" type="text" placeholder="例：ミュージカル エリザベート、ハムレット、源氏物語…" autocomplete="off">
+      <button class="search-btn" id="search-btn" onclick="doSearch()">
+        <span>🔍</span> 検索
+      </button>
+    </div>
+    <div class="examples">
+      <span class="examples-label">例：</span>
+      <span class="ex-chip" onclick="setQ('ミュージカル エリザベート')">ミュージカル エリザベート</span>
+      <span class="ex-chip" onclick="setQ('ベルサイユのばら')">ベルサイユのばら</span>
+      <span class="ex-chip" onclick="setQ('源氏物語')">源氏物語</span>
+      <span class="ex-chip" onclick="setQ('ハムレット')">ハムレット</span>
+      <span class="ex-chip" onclick="setQ('花の業平')">花の業平</span>
+      <span class="ex-chip" onclick="setQ('クレオパトラ')">クレオパトラ</span>
+    </div>
+  </section>
+
+  <div class="api-settings">
+    <button class="api-toggle" onclick="toggleApiPanel()">⚙ Claude API キー設定
+      <span id="api-status" class="api-status"></span>
+    </button>
+    <div class="api-panel" id="api-panel">
+      <label>Anthropic API キー（作品分析に使用）</label>
+      <div class="api-row">
+        <input type="password" id="api-key-input" placeholder="sk-ant-..." autocomplete="off">
+        <button class="save-btn" onclick="saveApiKey()">保存</button>
+      </div>
+      <p class="api-note">
+        キーはこのブラウザのローカルストレージのみに保存されます。
+        <a href="https://console.anthropic.com/" target="_blank" rel="noopener">Anthropic Console でキーを取得 →</a>
+      </p>
+    </div>
+  </div>
+
+  <div class="status-area" id="status-area"></div>
+  <div id="results-area" class="results-area"></div>
+
+</main>
+
+<div class="modal-backdrop" id="modal-backdrop" onclick="closeModal(event)">
+  <div class="modal" id="modal">
+    <button class="close-btn" onclick="closeModalDirect()">×</button>
+    <h3 id="m-name">―</h3>
+    <p class="m-years" id="m-years"></p>
+    <div class="m-tags" id="m-tags"></div>
+    <p class="m-summary" id="m-summary"></p>
+    <div class="m-events" id="m-events"></div>
+    <div class="m-actions">
+      <button class="m-close" onclick="closeModalDirect()">閉じる</button>
+      <a class="m-watch" id="m-watch" href="#" target="_blank" rel="noopener">📹 動画を見る →</a>
+    </div>
+  </div>
+</div>
+
+<footer class="site">
+  <p>観劇・読書の予習・深掘りにご活用ください。動画はすべて
+  <a href="https://www.youtube.com/@%E5%92%B2%E7%86%8A" target="_blank" rel="noopener">YouTubeチャンネル「咲熊」</a> で公開されています。</p>
+  <p>収録：362人物 ／ きさきヒストリアの data.json を使用</p>
+</footer>
+
+<script>
+// =================================================================
+// DATA
+// =================================================================
+let DATA = [];
+let apiKey = '';
+
+async function loadData() {
+  try {
+    const res = await fetch('./data.json');
+    DATA = await res.json();
+    console.log('Loaded', DATA.length, 'entries');
+  } catch(e) {
+    console.error('data.json load error:', e);
+    setStatus('<span class="error-msg">⚠ data.json の読み込みに失敗しました。同フォルダに data.json があるか確認してください。</span>');
+  }
+}
+
+// =================================================================
+// API KEY
+// =================================================================
+function loadApiKey() {
+  try {
+    const k = localStorage.getItem('studyGuideApiKey') || '';
+    apiKey = k;
+    updateApiStatus();
+    if (k) document.getElementById('api-key-input').value = k;
+  } catch(e) { apiKey = ''; }
+}
+
+function saveApiKey() {
+  const k = document.getElementById('api-key-input').value.trim();
+  if (!k) { alert('API キーを入力してください'); return; }
+  try {
+    localStorage.setItem('studyGuideApiKey', k);
+    apiKey = k;
+    updateApiStatus();
+    toggleApiPanel(false);
+    alert('API キーを保存しました');
+  } catch(e) { alert('保存に失敗しました'); }
+}
+
+function updateApiStatus() {
+  const el = document.getElementById('api-status');
+  if (apiKey) { el.textContent = '✓ 設定済み'; el.className = 'api-status ok'; }
+  else { el.textContent = '未設定'; el.className = 'api-status ng'; }
+}
+
+function toggleApiPanel(forceOpen) {
+  const panel = document.getElementById('api-panel');
+  if (forceOpen === false) panel.classList.remove('open');
+  else panel.classList.toggle('open');
+}
+
+// =================================================================
+// UI HELPERS
+// =================================================================
+function setQ(text) {
+  document.getElementById('q').value = text;
+  document.getElementById('q').focus();
+}
+function setStatus(html) { document.getElementById('status-area').innerHTML = html; }
+function clearResults() { document.getElementById('results-area').innerHTML = ''; }
+
+// =================================================================
+// CLAUDE API — 作品分析
+// =================================================================
+async function analyzeWork(workName) {
+  const prompt = `あなたは演劇・文学・歴史の専門家です。
+以下の作品を分析して、JSONのみで回答してください（説明不要）。
+
+作品名：「${workName}」
+
+以下のJSON形式で出力してください：
+{
+  "mainCharacters": ["実在または伝説上のモデルとなった人物名（日本語）"],
+  "era": "時代（例：近代、中世末期、平安時代、古代ローマ など）",
+  "country": "主な舞台の国または地域（例：オーストリア、日本、デンマーク など）",
+  "themes": ["テーマキーワード"]
+}
+
+注意：
+- mainCharacters には実在の人物や、伝説上のモデルとなった人物名を含めてください
+- 架空キャラクターのみの場合は時代・国に基づいて推測してください
+- 日本語の人物名で答えてください
+- JSONのみ出力（前後のテキスト不要）`;
+
+  const res = await fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'x-api-key': apiKey,
+      'anthropic-version': '2023-06-01',
+      'anthropic-dangerous-direct-browser-access': 'true'
+    },
+    body: JSON.stringify({
+      model: 'claude-haiku-4-5-20251001',
+      max_tokens: 512,
+      messages: [{ role: 'user', content: prompt }]
+    })
+  });
+
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    throw new Error(err.error?.message || 'API エラー (' + res.status + ')');
+  }
+
+  const data = await res.json();
+  const text = (data.content && data.content[0] && data.content[0].text) || '';
+  const match = text.match(/\{[\s\S]*\}/);
+  if (!match) throw new Error('APIの応答からJSONを取得できませんでした');
+  return JSON.parse(match[0]);
+}
+
+// =================================================================
+// SEARCH LOGIC
+// =================================================================
+function normalize(s) {
+  return (s || '').replace(/[\s・　（）()「」【】]/g, '').toLowerCase();
+}
+
+// 名前一致判定（精度重視）
+function nameMatch(nChar, nName) {
+  if (!nChar || nChar.length < 2 || !nName) return false;
+  if (nName === nChar) return true;
+  // キャラ名が人物名の中にあり、かつキャラ名が人物名の60%以上の長さ
+  if (nName.includes(nChar) && nChar.length >= nName.length * 0.6) return true;
+  // 人物名がキャラ名に含まれる（人物名は3文字以上）
+  if (nChar.includes(nName) && nName.length >= 3) return true;
+  return false;
+}
+
+function getMajorEra(era) {
+  if (!era) return '';
+  if (era.includes('近代')) return '近代';
+  if (era.includes('近世') || era.includes('ルネサンス')) return '近世';
+  if (era.includes('中世')) return '中世';
+  if (era.includes('古代') || era.includes('ローマ')) return '古代';
+  if (era.includes('平安')) return '平安';
+  if (era.includes('鎌倉')) return '鎌倉';
+  if (era.includes('室町') || era.includes('戦国') || era.includes('安土桃山')) return '室町戦国';
+  if (era.includes('江戸')) return '江戸';
+  if (era.includes('飛鳥') || era.includes('奈良')) return '古代日本';
+  if (era.includes('南北朝')) return '南北朝';
+  if (era.includes('南宋') || era.includes('宋')) return '宋';
+  return era;
+}
+
+function eraOverlap(a, b) {
+  const ma = getMajorEra(a), mb = getMajorEra(b);
+  return !!(ma && mb && ma === mb);
+}
+
+function getCountryKey(c) {
+  if (!c) return '';
+  if (c.includes('オーストリア') || c.includes('ハプスブルク')) return 'オーストリア';
+  if (c.includes('フランス') && !c.includes('イングランド')) return 'フランス';
+  if (c.includes('イングランド') || (c.includes('イギリス') && !c.includes('ドイツ') && !c.includes('デンマーク'))) return 'イギリス';
+  if (c.includes('スペイン') && !c.includes('神聖ローマ') && !c.includes('イタリア')) return 'スペイン';
+  if (c.includes('神聖ローマ')) return '神聖ローマ';
+  if (c === '日本') return '日本';
+  if (c.includes('デンマーク') && !c.includes('イギリス') && !c.includes('スウェーデン')) return 'デンマーク';
+  if (c.includes('ロシア')) return 'ロシア';
+  if (c.includes('中国') || c.includes('前漢') || c.includes('後漢') || c.includes('明') || c.includes('清')) return '中国';
+  if (c.includes('スウェーデン')) return 'スウェーデン';
+  if (c.includes('ポーランド')) return 'ポーランド';
+  if (c.includes('イタリア')) return 'イタリア';
+  return '';
+}
+
+function countryOverlap(a, b) {
+  if (!a || !b) return false;
+  const ka = getCountryKey(a), kb = getCountryKey(b);
+  if (ka && kb && ka === kb) return true;
+  const na = normalize(a), nb = normalize(b);
+  return na.includes(nb) || nb.includes(na);
+}
+
+/**
+ * 4段階検索
+ */
+function searchData(characters, era, country) {
+  const main = new Map();
+
+  // Level 1 & 2
+  for (const charName of characters) {
+    const nChar = normalize(charName);
+    if (nChar.length < 2) continue;
+    for (const item of DATA) {
+      if (main.has(item.id)) continue;
+      const nName = normalize(item.name);
+      if (nameMatch(nChar, nName)) {
+        main.set(item.id, { item, level: 1, matchedChar: charName });
+        continue;
+      }
+      const kwMatch = (item.keywords || []).some(function(kw) {
+        const nKw = normalize(kw);
+        return nameMatch(nChar, nKw) || nameMatch(nKw, nChar);
+      });
+      if (kwMatch) {
+        main.set(item.id, { item, level: 2, matchedChar: charName });
+      }
+    }
+  }
+
+  // era + country 収集（Claude分析優先、高確度Level1補足）
+  const matchedEras = new Set();
+  const matchedCountries = new Set();
+  if (era) matchedEras.add(era);
+  if (country) matchedCountries.add(country);
+  for (const m of main.values()) {
+    if (m.level !== 1) continue;
+    const nChar = normalize(m.matchedChar);
+    const nName = normalize(m.item.name);
+    if (nChar.length >= nName.length * 0.8) {
+      if (m.item.era) matchedEras.add(m.item.era);
+      if (m.item.country) matchedCountries.add(m.item.country);
+    }
+  }
+
+  // Level 3: era + country
+  const related = new Map();
+  for (const item of DATA) {
+    if (main.has(item.id)) continue;
+    const eraOk = Array.from(matchedEras).some(function(e) { return eraOverlap(e, item.era); });
+    const ctryOk = Array.from(matchedCountries).some(function(c) { return countryOverlap(c, item.country); });
+    if (eraOk && ctryOk) {
+      const exact = Array.from(matchedCountries).some(function(c) { return normalize(c) === normalize(item.country); });
+      related.set(item.id, { item, level: 3, exactCountry: exact });
+    }
+  }
+
+  // Level 4: era のみ（Level3が少ない場合）
+  const eraOnly = new Map();
+  if (related.size < 3) {
+    for (const item of DATA) {
+      if (main.has(item.id) || related.has(item.id) || eraOnly.has(item.id)) continue;
+      const eraOk = Array.from(matchedEras).some(function(e) { return eraOverlap(e, item.era); });
+      if (eraOk) eraOnly.set(item.id, { item, level: 4 });
+    }
+  }
+
+  const sortedRelated = Array.from(related.values()).sort(function(a, b) {
+    if (a.exactCountry && !b.exactCountry) return -1;
+    if (!a.exactCountry && b.exactCountry) return 1;
+    return 0;
+  });
+
+  return {
+    main: Array.from(main.values()).sort(function(a, b) { return a.level - b.level; }),
+    related: sortedRelated,
+    eraOnly: Array.from(eraOnly.values())
+  };
+}
+
+// =================================================================
+// RENDER
+// =================================================================
+function renderAnalysis(analysis) {
+  const chars = (analysis.mainCharacters || []).map(function(c) {
+    return '<span class="a-tag">' + esc(c) + '</span>';
+  }).join('');
+  const themes = (analysis.themes || []).map(function(t) {
+    return '<span class="a-tag theme">' + esc(t) + '</span>';
+  }).join('');
+  return '<div class="analysis-card">' +
+    '<h3>📖 作品分析結果</h3>' +
+    '<div class="analysis-row"><span class="analysis-label">主要人物</span>' +
+    '<div class="tag-list">' + (chars || '<span class="a-tag">―</span>') + '</div></div>' +
+    '<div class="analysis-row"><span class="analysis-label">時代・舞台</span>' +
+    '<div class="tag-list"><span class="a-tag era">' + esc(analysis.era || '―') + '</span>' +
+    (analysis.country ? '<span class="a-tag era">' + esc(analysis.country) + '</span>' : '') +
+    '</div></div>' +
+    '<div class="analysis-row"><span class="analysis-label">テーマ</span>' +
+    '<div class="tag-list">' + (themes || '<span class="a-tag">―</span>') + '</div></div>' +
+    '</div>';
+}
+
+function renderCard(entry) {
+  const item = entry.item;
+  const level = entry.level;
+  const label = level <= 2 ? '人物名一致' : (level === 3 ? '同時代・同国' : '同時代');
+  const badgeCls = level <= 2 ? '' : ' era-badge';
+  const years = (item.birth || item.death) ? (item.birth || '?') + ' – ' + (item.death || '?') : '';
+  return '<div class="card" onclick="openModal(\'' + esc(item.id) + '\')">' +
+    '<span class="match-badge' + badgeCls + '">' + label + '</span>' +
+    '<div class="name">' + esc(item.name) + '</div>' +
+    (years ? '<div class="years">' + years + '</div>' : '') +
+    '<div class="era-row">' +
+    (item.era ? '<span class="era-tag">' + esc(item.era) + '</span>' : '') +
+    (item.country ? '<span class="country-tag">' + esc(item.country) + '</span>' : '') +
+    '</div>' +
+    '<p class="summary">' + esc(item.summary || '') + '</p>' +
+    '<span class="play-btn">📹 動画を見る</span>' +
+    '</div>';
+}
+
+function renderResults(analysis, results) {
+  const main = results.main;
+  const related = results.related;
+  const eraOnly = results.eraOnly;
+
+  let html = renderAnalysis(analysis);
+
+  // メイン人物
+  html += '<div class="section-main">';
+  html += '<div class="section-head"><h2>👑 メイン人物</h2><span class="count">' + main.length + '件</span></div>';
+  if (main.length > 0) {
+    html += '<div class="cards">' + main.map(renderCard).join('') + '</div>';
+  } else {
+    html += '<div class="no-results">この作品に関連する人物がデータベースに見つかりませんでした。<br><small>別の作品名や表記で試してみてください。</small></div>';
+  }
+  html += '</div>';
+
+  // 同時代・同国（Level3 or Level4）
+  const relatedList = related.length > 0 ? related : eraOnly;
+  const relTitle = related.length > 0 ? '🌍 同時代・同国の人物たち' : '🌍 同時代の人物たち';
+  const relNote = related.length > 0
+    ? '同じ時代・地域で活躍した女性たちの動画も合わせて見ると、時代背景がより深く理解できます'
+    : '同じ時代に活躍した女性たちの動画も合わせて見ると、時代背景がより深く理解できます';
+
+  if (relatedList.length > 0) {
+    const display = relatedList.slice(0, 8);
+    html += '<div class="section-related">';
+    html += '<div class="section-head"><h2>' + relTitle + '</h2><span class="count">' +
+      display.length + '件' + (relatedList.length > 8 ? '（全' + relatedList.length + '件中）' : '') +
+      '</span></div>';
+    html += '<div class="section-era-note">⭐ ' + relNote + '</div>';
+    html += '<div class="cards">' + display.map(renderCard).join('') + '</div>';
+    html += '</div>';
+  }
+
+  if (main.length === 0 && relatedList.length === 0) {
+    html += '<div class="star-tip"><span class="star">💡</span>' +
+      '<p>データベースにまだ登録されていない作品かもしれません。' +
+      '「きさきヒストリア」では362人物を収録しています。' +
+      '<a href="./index.html">一覧から探してみる →</a></p></div>';
+  }
+
+  document.getElementById('results-area').innerHTML = html;
+}
+
+// =================================================================
+// MODAL
+// =================================================================
+function openModal(id) {
+  const item = DATA.find(function(d) { return d.id === id; });
+  if (!item) return;
+  document.getElementById('m-name').textContent = item.name;
+  const years = (item.birth || item.death) ? (item.birth || '?') + ' – ' + (item.death || '?') + ' 年' : '';
+  document.getElementById('m-years').textContent = years;
+  const tags = document.getElementById('m-tags');
+  tags.innerHTML = '';
+  if (item.era) tags.innerHTML += '<span style="background:#E8F0FF;color:#1A3A6A">' + esc(item.era) + '</span>';
+  if (item.country) tags.innerHTML += '<span>' + esc(item.country) + '</span>';
+  if (item.role) tags.innerHTML += '<span>' + esc(item.role) + '</span>';
+  document.getElementById('m-summary').textContent = item.summary || '';
+  document.getElementById('m-events').innerHTML = (item.events || []).map(function(e) {
+    return '<span>' + esc(e) + '</span>';
+  }).join('');
+  document.getElementById('m-watch').href = item.url || '#';
+  document.getElementById('modal-backdrop').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal(e) {
+  if (e.target === document.getElementById('modal-backdrop')) closeModalDirect();
+}
+function closeModalDirect() {
+  document.getElementById('modal-backdrop').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// =================================================================
+// MAIN SEARCH
+// =================================================================
+async function doSearch() {
+  const q = document.getElementById('q').value.trim();
+  if (!q) { document.getElementById('q').focus(); return; }
+  if (!apiKey) {
+    setStatus('<span class="error-msg">⚠ Claude API キーが設定されていません。上の「⚙ Claude API キー設定」から設定してください。</span>');
+    document.getElementById('api-panel').classList.add('open');
+    return;
+  }
+  if (DATA.length === 0) {
+    setStatus('<span class="error-msg">⚠ データが読み込まれていません。ページを再読み込みしてください。</span>');
+    return;
+  }
+
+  const btn = document.getElementById('search-btn');
+  btn.disabled = true;
+  clearResults();
+
+  try {
+    setStatus('<div class="status-msg"><div class="spinner"></div>「' + esc(q) + '」を分析中…</div>');
+    const analysis = await analyzeWork(q);
+    console.log('Analysis:', analysis);
+
+    setStatus('<div class="status-msg"><div class="spinner"></div>データベースを検索中…</div>');
+    const results = searchData(
+      analysis.mainCharacters || [],
+      analysis.era || '',
+      analysis.country || ''
+    );
+    console.log('Results - main:', results.main.length, 'related:', results.related.length);
+
+    setStatus('');
+    renderResults(analysis, results);
+  } catch(e) {
+    console.error(e);
+    setStatus('<span class="error-msg">⚠ エラーが発生しました：' + esc(e.message) + '</span>');
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('q').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') doSearch();
+  });
+});
+
+// =================================================================
+// UTILS
+// =================================================================
+function esc(s) {
+  return String(s || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+// =================================================================
+// INIT
+// =================================================================
+loadData();
+loadApiKey();
+</script>
+
+</body>
+</html>
