@@ -545,7 +545,16 @@ sel.appendChild(opt);
 }
 sel.addEventListener('change', () => {
 const val = sel.value;
-if(val){ setQueryAndRefresh(val); sel.value = ''; }
+if(val){
+// reset other selects
+container.querySelectorAll('.event-group-select').forEach(s => {
+if(s !== sel) s.value = '';
+});
+setQueryAndRefresh(val);
+} else {
+// placeholder chosen: clear filter
+setQueryAndRefresh('');
+}
 });
 container.appendChild(sel);
 }
