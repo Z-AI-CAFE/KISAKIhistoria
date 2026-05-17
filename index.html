@@ -107,10 +107,10 @@ header.site{padding:32px 16px 20px;text-align:center;border-bottom:1px solid var
 .chip-group .era-label{display:block;min-width:0;margin:8px 0 4px}
 .chip-group .chip-row{display:flex;width:100%}
 }
-.event-dropdown-wrapper{margin:8px 0 4px}
-#event-select{padding:6px 12px;border:1px solid var(--border);border-radius:18px;background:var(--chip);color:var(--text);font-size:12px;cursor:pointer;font-family:inherit;outline:0;max-width:100%}
-#event-select:hover{background:var(--chip-hover)}
-#event-select:focus{border-color:var(--accent-light)}
+#event-dropdowns{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 4px}
+.event-group-select{padding:6px 12px;border:1px solid var(--border);border-radius:18px;background:var(--chip);color:var(--text);font-size:12px;cursor:pointer;font-family:inherit;outline:0;max-width:100%}
+.event-group-select:hover{background:var(--chip-hover)}
+.event-group-select:focus{border-color:var(--accent-light)}
 .tabs{display:flex;gap:4px;margin:20px 0 0;border-bottom:1px solid var(--border);overflow-x:auto;-webkit-overflow-scrolling:touch}
 .tab{padding:8px 14px;font-size:13px;color:var(--text-sub);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;flex-shrink:0}
 .tab.active{color:var(--accent);border-bottom-color:var(--accent);font-weight:500}
@@ -327,9 +327,7 @@ mark{background:#FFE599;color:inherit;padding:0 2px;border-radius:2px}
 </div>
 </div>
 </div>
-<div class="event-dropdown-wrapper">
-<select id="event-select"><option value="">— すべての事件から探す —</option></select>
-</div>
+<div id="event-dropdowns"></div>
 <div class="tabs tabs-all" id="all-tabs" style="display:none">
 <span class="tab active" data-major-era="all">すべて</span>
 <span class="tab" data-major-era="古代">古代</span>
