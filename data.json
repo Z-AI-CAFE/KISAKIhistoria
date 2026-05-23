@@ -463,6 +463,9 @@
     "death": "1176",
     "era": "平安末期",
     "country": "日本",
+    "youtube_id": "FsySsGCJ_-8",
+    "youtube_start": 0,
+    "has_family_tree": true,
     "events": [
       "平氏政権成立",
       "鹿ケ谷の陰謀",
@@ -499,7 +502,7 @@
       "治承・寿永の乱",
       "壇ノ浦の戦い",
       "平氏滅亡"
-    ],
+          ],
     "keywords": [
       "高倉天皇",
       "平清盛",
