@@ -1,0 +1,108 @@
+<svg viewBox="0 0 540 320" width="100%" xmlns="http://www.w3.org/2000/svg"
+     font-family="Hiragino Sans,Yu Gothic,sans-serif">
+
+  <!-- ===== LINES (drawn first, nodes on top) ===== -->
+
+  <!-- 後白河法皇 → 高倉天皇（親子） -->
+  <path d="M65,52 L65,96 L55,96 L55,140" stroke="#9B9188" stroke-width="1.5" fill="none"/>
+
+  <!-- 平清盛 ↔ 平時子（夫婦・青実線） -->
+  <path d="M375,31 L395,31" stroke="#4A7DA8" stroke-width="1.5" fill="none"/>
+
+  <!-- 平清盛+平時子 → 平徳子・平宗盛・平重衡（親子分岐） -->
+  <path d="M385,52 L385,96" stroke="#9B9188" stroke-width="1.5" fill="none"/>
+  <path d="M195,96 L475,96" stroke="#9B9188" stroke-width="1.5" fill="none"/>
+  <path d="M195,96 L195,140" stroke="#9B9188" stroke-width="1.5" fill="none"/>
+  <path d="M365,96 L365,140" stroke="#9B9188" stroke-width="1.5" fill="none"/>
+  <path d="M475,96 L475,140" stroke="#9B9188" stroke-width="1.5" fill="none"/>
+
+  <!-- 高倉天皇 ↔ 平徳子（夫婦・強調・青実線） -->
+  <path d="M100,161 L150,161" stroke="#4A7DA8" stroke-width="2" fill="none"/>
+
+  <!-- 高倉天皇+平徳子 → 安徳天皇（親子） -->
+  <path d="M125,182 L125,260" stroke="#9B9188" stroke-width="1.5" fill="none"/>
+
+  <!-- ===== RELATIONSHIP LABELS ===== -->
+
+  <!-- 後白河法皇 → 高倉天皇「父」ラベル -->
+  <rect x="44" y="81" width="24" height="14" rx="3" fill="#FBF7F0"/>
+  <text x="56" y="91" text-anchor="middle" font-size="10" fill="#9B9188"
+        font-family="Hiragino Sans,Yu Gothic,sans-serif">父</text>
+
+  <!-- 平清盛 ↔ 平時子「夫婦」ラベル -->
+  <rect x="370" y="23" width="30" height="14" rx="3" fill="#FBF7F0"/>
+  <text x="385" y="33" text-anchor="middle" font-size="10" fill="#4A7DA8"
+        font-family="Hiragino Sans,Yu Gothic,sans-serif">夫婦</text>
+
+  <!-- 高倉天皇 ↔ 平徳子「★夫婦」強調ラベル -->
+  <rect x="104" y="153" width="42" height="15" rx="3" fill="#FBF7F0"/>
+  <text x="125" y="164" text-anchor="middle" font-size="10" font-weight="600" fill="#9C2D2D"
+        font-family="Hiragino Sans,Yu Gothic,sans-serif">★夫婦</text>
+
+  <!-- ===== NODES ===== -->
+
+  <!-- 後白河法皇 -->
+  <rect x="10" y="10" width="110" height="42" rx="7"
+        fill="white" stroke="#E5DFD2" stroke-width="1.5"/>
+  <text x="65" y="27" text-anchor="middle" font-size="13" font-weight="600" fill="#2C2A24"
+        font-family="Hiragino Sans,Yu Gothic,sans-serif">後白河法皇</text>
+  <text x="65" y="42" text-anchor="middle" font-size="10" fill="#6B665A"
+        font-family="Hiragino Sans,Yu Gothic,sans-serif">高倉天皇の父</text>
+
+  <!-- 平清盛 -->
+  <rect x="285" y="10" width="90" height="42" rx="7"
+        fill="white" stroke="#E5DFD2" stroke-width="1.5"/>
+  <text x="330" y="27" text-anchor="middle" font-size="13" font-weight="600" fill="#2C2A24"
+        font-family="Hiragino Sans,Yu Gothic,sans-serif">平清盛</text>
+  <text x="330" y="42" text-anchor="middle" font-size="10" fill="#6B665A"
+        font-family="Hiragino Sans,Yu Gothic,sans-serif">父・太政大臣</text>
+
+  <!-- 平時子 -->
+  <rect x="395" y="10" width="90" height="42" rx="7"
+        fill="white" stroke="#E5DFD2" stroke-width="1.5"/>
+  <text x="440" y="27" text-anchor="middle" font-size="13" font-weight="600" fill="#2C2A24"
+        font-family="Hiragino Sans,Yu Gothic,sans-serif">平時子</text>
+  <text x="440" y="42" text-anchor="middle" font-size="10" fill="#6B665A"
+        font-family="Hiragino Sans,Yu Gothic,sans-serif">母</text>
+
+  <!-- 高倉天皇 -->
+  <rect x="10" y="140" width="90" height="42" rx="7"
+        fill="white" stroke="#E5DFD2" stroke-width="1.5"/>
+  <text x="55" y="157" text-anchor="middle" font-size="13" font-weight="600" fill="#2C2A24"
+        font-family="Hiragino Sans,Yu Gothic,sans-serif">高倉天皇</text>
+  <text x="55" y="172" text-anchor="middle" font-size="10" fill="#6B665A"
+        font-family="Hiragino Sans,Yu Gothic,sans-serif">夫・天皇</text>
+
+  <!-- 平徳子★（本人・平安カラー） -->
+  <rect x="150" y="140" width="90" height="42" rx="7"
+        fill="#F4C7C7" stroke="#9C2D2D" stroke-width="2"/>
+  <text x="195" y="157" text-anchor="middle" font-size="14" font-weight="700" fill="#9C2D2D"
+        font-family="Hiragino Sans,Yu Gothic,sans-serif">平徳子</text>
+  <text x="195" y="172" text-anchor="middle" font-size="10" fill="#7a2020"
+        font-family="Hiragino Sans,Yu Gothic,sans-serif">建礼門院</text>
+
+  <!-- 平宗盛 -->
+  <rect x="320" y="140" width="90" height="42" rx="7"
+        fill="white" stroke="#E5DFD2" stroke-width="1.5"/>
+  <text x="365" y="157" text-anchor="middle" font-size="13" font-weight="600" fill="#2C2A24"
+        font-family="Hiragino Sans,Yu Gothic,sans-serif">平宗盛</text>
+  <text x="365" y="172" text-anchor="middle" font-size="10" fill="#6B665A"
+        font-family="Hiragino Sans,Yu Gothic,sans-serif">兄</text>
+
+  <!-- 平重衡 -->
+  <rect x="430" y="140" width="90" height="42" rx="7"
+        fill="white" stroke="#E5DFD2" stroke-width="1.5"/>
+  <text x="475" y="157" text-anchor="middle" font-size="13" font-weight="600" fill="#2C2A24"
+        font-family="Hiragino Sans,Yu Gothic,sans-serif">平重衡</text>
+  <text x="475" y="172" text-anchor="middle" font-size="10" fill="#6B665A"
+        font-family="Hiragino Sans,Yu Gothic,sans-serif">兄</text>
+
+  <!-- 安徳天皇 -->
+  <rect x="80" y="260" width="90" height="42" rx="7"
+        fill="white" stroke="#E5DFD2" stroke-width="1.5"/>
+  <text x="125" y="277" text-anchor="middle" font-size="13" font-weight="600" fill="#2C2A24"
+        font-family="Hiragino Sans,Yu Gothic,sans-serif">安徳天皇</text>
+  <text x="125" y="292" text-anchor="middle" font-size="10" fill="#6B665A"
+        font-family="Hiragino Sans,Yu Gothic,sans-serif">子・天皇</text>
+
+</svg>
