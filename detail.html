@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>きさきヒストリア</title>
+
+<!-- Google Analytics (同じIDを引き継ぐ) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZT34STTDTR"></script>
+<script>
+window.dataLayer=window.dataLayer||[];
+function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','G-ZT34STTDTR');
+</script>
+
+<style>
+/* ══ 共通変数（index.htmlと同一） ══ */
+:root{
+  --bg:#FBF7F0;--bg-card:#FFFFFF;--text:#2C2A24;--text-sub:#6B665A;
+  --accent:#9C2D2D;--border:#E5DFD2;
+  --era-asuka:#D9C5E0;--era-nara:#F2D69B;--era-heian:#F4C7C7;
+  --era-kamakura:#A5B5C9;--era-muromachi:#C8D4A8;--era-sengoku:#E4A89A;
+  --era-edo:#A5BBC9;--era-world:#B7C9D8;--era-china:#E8C29A;--era-asia:#C5D4A8;
+  --era-nordic:#9FCFE6;--era-east:#D2A6B5;
+  --era-color: var(--bg); /* 各人物のテーマカラー（JS で上書き） */
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--text);
+  font-family:"Hiragino Sans","Yu Gothic","Noto Sans JP",sans-serif;line-height:1.7}
+
+/* ── ヘッダー ── */
+.site-header{
+  background:var(--bg);border-bottom:1px solid var(--border);
+  padding:12px 16px;display:flex;align-items:center;gap:12px;
+  position:sticky;top:0;z-index:10;
+}
+.back-btn{
+  display:inline-flex;align-items:center;gap:4px;
+  color:var(--accent);text-decoration:none;font-size:14px;
+  padding:6px 12px;border:1px solid var(--accent);border-radius:20px;
+  white-space:nowrap;
+}
+.back-btn:hover{background:var(--accent);color:#fff;}
+.site-name{font-size:18px;font-weight:600;color:var(--accent);letter-spacing:.04em;}
+
+/* ── メインコンテンツ ── */
+.container{max-width:600px;margin:0 auto;padding:20px 16px 48px;}
+
+/* ── 人物タイトル ── */
+.person-header{
+  background:var(--era-color);border-radius:12px;
+  padding:20px 20px 16px;margin-bottom:20px;
+}
+.person-name{font-size:24px;font-weight:700;margin:0 0 4px;}
+.person-reading{font-size:13px;color:var(--text-sub);margin:0 0 10px;}
+.person-meta{display:flex;flex-wrap:wrap;gap:6px;font-size:12px;}
+.meta-chip{
+  background:rgba(255,255,255,0.6);border-radius:20px;
+  padding:2px 10px;color:var(--text-sub);
+}
+
+/* ── セクションラベル ── */
+.section-label{
+  font-size:11px;font-weight:600;letter-spacing:.08em;
+  color:var(--text-sub);text-transform:uppercase;
+  margin:24px 0 8px;padding-left:2px;
+}
+
+/* ── 動画エリア ── */
+.video-wrap{position:relative;width:100%;padding-top:56.25%;background:#000;border-radius:10px;overflow:hidden;}
+.video-placeholder{position:absolute;inset:0;}
+/* fixed overlay（JS が制御） */
+#video-overlay{
+  position:fixed;z-index:200;overflow:hidden;
+  border-radius:0;box-shadow:none;background:#000;
+  display:none; /* JS初期化後に表示 */
+}
+#video-overlay iframe{width:100%;height:100%;border:0;display:block;}
+#mini-close{
+  display:none;position:absolute;top:4px;right:6px;
+  background:rgba(0,0,0,.6);color:#fff;border:none;border-radius:50%;
+  width:22px;height:22px;font-size:14px;cursor:pointer;
+  line-height:22px;text-align:center;padding:0;
+}
+#video-overlay.mini #mini-close{display:block;}
+
+/* ── 家系図エリア ── */
+.family-tree-box{
+  background:#fff;border:1px solid var(--border);border-radius:12px;
+  padding:16px;overflow-x:auto;
+}
+.family-tree-box svg{display:block;max-width:100%;height:auto;}
+
+/* 凡例 */
+.legend{display:flex;flex-wrap:wrap;gap:10px 16px;font-size:11px;color:var(--text-sub);margin-top:10px;}
+.legend-item{display:flex;align-items:center;gap:5px;}
+.leg-line{width:24px;height:2px;}
+.leg-solid{background:#9B9188;}
+.leg-blue{background:#4A7DA8;}
+.leg-dashed{background:repeating-linear-gradient(90deg,#4A7DA8 0,#4A7DA8 5px,transparent 5px,transparent 8px);}
+.leg-red{background:repeating-linear-gradient(90deg,#9C2D2D 0,#9C2D2D 4px,transparent 4px,transparent 7px);}
+
+/* ── サマリー ── */
+.summary-box{font-size:14px;line-height:1.8;color:var(--text);}
+
+/* ── イベントタグ ── */
+.events-box{display:flex;flex-wrap:wrap;gap:6px;}
+.event-tag{
+  background:#F2EBDA;border-radius:20px;
+  padding:3px 12px;font-size:12px;color:var(--text-sub);
+}
+
+/* ── YouTubeリンク ── */
+.yt-link{
+  display:block;text-align:center;margin-top:20px;
+  background:var(--accent);color:#fff;text-decoration:none;
+  border-radius:8px;padding:12px;font-size:14px;font-weight:600;
+}
+.yt-link:hover{opacity:.88;}
+
+/* ── ローディング ── */
+.loading{text-align:center;padding:60px 20px;color:var(--text-sub);font-size:15px;}
+.error-box{text-align:center;padding:60px 20px;color:#9C2D2D;}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a class="back-btn" href="index.html">← 一覧に戻る</a>
+  <span class="site-name">きさきヒストリア</span>
+</header>
+
+<!-- 動画オーバーレイ（常にDOMに存在、JS が制御） -->
+<div id="video-overlay">
+  <iframe id="yt-iframe" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  <button id="mini-close" aria-label="閉じる">×</button>
+</div>
+
+<main class="container" id="main">
+  <div class="loading">読み込み中…</div>
+</main>
+
+<script>
+(function(){
+'use strict';
+
+/* ── 1. URLパラメータから id を取得 ── */
+var id = new URLSearchParams(location.search).get('id');
+if(!id){
+  document.getElementById('main').innerHTML = '<div class="error-box">IDが指定されていません。<br><a href="index.html">一覧に戻る</a></div>';
+  return;
+}
+
+/* ── 2. era → CSS変数マップ ── */
+var ERA_COLOR = {
+  '飛鳥':'var(--era-asuka)', '奈良':'var(--era-nara)', '平安':'var(--era-heian)',
+  '鎌倉':'var(--era-kamakura)', '室町':'var(--era-muromachi)',
+  '戦国':'var(--era-sengoku)', '安土桃山':'var(--era-sengoku)',
+  '江戸':'var(--era-edo)'
+};
+function eraColor(era, country){
+  if(!country || country === '日本'){
+    for(var k in ERA_COLOR){ if((era||'').includes(k)) return ERA_COLOR[k]; }
+  }
+  return 'var(--era-world)';
+}
+
+/* ── 3. data.json を取得 ── */
+fetch('data.json')
+  .then(function(r){ return r.json(); })
+  .then(function(data){
+    var item = data.find(function(d){ return d.id === id; });
+    if(!item){
+      document.getElementById('main').innerHTML =
+        '<div class="error-box">「'+id+'」が見つかりません。<br><a href="index.html">一覧に戻る</a></div>';
+      return;
+    }
+    renderPage(item);
+  })
+  .catch(function(){
+    document.getElementById('main').innerHTML =
+      '<div class="error-box">データの読み込みに失敗しました。<br><a href="index.html">一覧に戻る</a></div>';
+  });
+
+/* ── 4. ページを描画 ── */
+function renderPage(item){
+  document.title = item.name + ' — きさきヒストリア';
+
+  /* eraカラーをCSS変数に設定 */
+  document.documentElement.style.setProperty('--era-color', eraColor(item.era, item.country));
+
+  var years = (item.birth||'?') + ' – ' + (item.death||'?');
+  var metaChips = [item.country||'', item.era||'', years, item.role||'']
+    .filter(Boolean).map(function(s){ return '<span class="meta-chip">'+s+'</span>'; }).join('');
+  var eventsHtml = (item.events||[]).map(function(e){
+    return '<span class="event-tag">'+e+'</span>';
+  }).join('');
+
+  var hasVideo   = !!item.youtube_id;
+  var hasTree    = !!item.has_family_tree;
+  var ytStart    = item.youtube_start || 0;
+  var ytSrc      = hasVideo
+    ? 'https://www.youtube.com/embed/'+item.youtube_id+'?start='+ytStart+'&rel=0&enablejsapi=1'
+    : '';
+
+  var html = '';
+
+  /* 人物ヘッダー */
+  html += '<div class="person-header">'
+    + '<div class="person-name">'+item.name+'</div>'
+    + '<div class="person-reading">'+(item.reading||'')+'</div>'
+    + '<div class="person-meta">'+metaChips+'</div>'
+    + '</div>';
+
+  /* 動画 */
+  if(hasVideo){
+    html += '<div class="section-label">解説動画</div>'
+      + '<div class="video-wrap"><div class="video-placeholder" id="video-placeholder"></div></div>';
+  }
+
+  /* 家系図 */
+  if(hasTree){
+    html += '<div class="section-label">家系図</div>'
+      + '<div class="family-tree-box" id="family-tree-box"><div class="loading">家系図を読み込み中…</div></div>'
+      + '<div class="legend">'
+      + '<span class="legend-item"><span class="leg-line leg-solid"></span>親子</span>'
+      + '<span class="legend-item"><span class="leg-line leg-blue"></span>夫婦①</span>'
+      + '<span class="legend-item"><span class="leg-line leg-dashed"></span>夫婦②（別妻）</span>'
+      + '<span class="legend-item"><span class="leg-line leg-red"></span>強調関係</span>'
+      + '</div>';
+  }
+
+  /* サマリー */
+  if(item.summary){
+    html += '<div class="section-label">解説</div>'
+      + '<div class="summary-box">'+item.summary+'</div>';
+  }
+
+  /* イベント */
+  if(eventsHtml){
+    html += '<div class="section-label">キーワード</div>'
+      + '<div class="events-box">'+eventsHtml+'</div>';
+  }
+
+  /* YouTubeリンク */
+  if(item.url){
+    html += '<a class="yt-link" href="'+item.url+'" target="_blank" rel="noopener">▶ YouTubeで全編を見る</a>';
+  }
+
+  document.getElementById('main').innerHTML = html;
+
+  /* 動画オーバーレイ初期化 */
+  if(hasVideo) initVideo(ytSrc);
+
+  /* 家系図SVG読み込み */
+  if(hasTree) loadFamilySvg(id);
+}
+
+/* ── 5. SVG 非同期読み込み ── */
+function loadFamilySvg(personId){
+  fetch('family/'+personId+'.svg')
+    .then(function(r){ return r.text(); })
+    .then(function(svgText){
+      var box = document.getElementById('family-tree-box');
+      if(box) box.innerHTML = svgText;
+    })
+    .catch(function(){
+      var box = document.getElementById('family-tree-box');
+      if(box) box.innerHTML = '<div style="padding:20px;color:var(--text-sub);text-align:center;">家系図は準備中です。</div>';
+    });
+}
+
+/* ── 6. ミニプレーヤー ── */
+function initVideo(ytSrc){
+  var iframe = document.getElementById('yt-iframe');
+  var ov     = document.getElementById('video-overlay');
+  var btn    = document.getElementById('mini-close');
+  var ph     = document.getElementById('video-placeholder');
+  if(!ph) return;
+
+  iframe.src = ytSrc;
+  ov.style.display = 'block';
+
+  var MINI_W=160, MINI_H=90, MINI_M=12;
+  var isMini=false, isClosed=false;
+
+  function sync(){
+    if(isMini||isClosed) return;
+    var r = ph.getBoundingClientRect();
+    ov.style.top    = r.top+'px';
+    ov.style.left   = r.left+'px';
+    ov.style.width  = r.width+'px';
+    ov.style.height = r.height+'px';
+    ov.style.bottom = 'auto';
+    ov.style.right  = 'auto';
+  }
+  function goMini(){
+    isMini = true;
+    ov.style.transition = 'top .3s ease,left .3s ease,width .3s ease,height .3s ease,border-radius .3s ease,box-shadow .3s ease';
+    ov.style.top    = (window.innerHeight-MINI_H-MINI_M)+'px';
+    ov.style.left   = (window.innerWidth-MINI_W-MINI_M)+'px';
+    ov.style.width  = MINI_W+'px';
+    ov.style.height = MINI_H+'px';
+    ov.style.borderRadius = '8px';
+    ov.style.boxShadow    = '0 6px 24px rgba(0,0,0,.45)';
+    ov.classList.add('mini');
+  }
+  function leaveMini(){
+    isMini = false;
+    ov.style.transition   = 'none';
+    ov.style.borderRadius = '0';
+    ov.style.boxShadow    = 'none';
+    ov.classList.remove('mini');
+    sync();
+  }
+
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(isClosed) return;
+      if(!e.isIntersecting && !isMini) goMini();
+      else if(e.isIntersecting && isMini) leaveMini();
+    });
+  },{threshold:0});
+  obs.observe(ph);
+
+  window.addEventListener('scroll', sync, {passive:true});
+  window.addEventListener('resize', function(){
+    if(isMini){
+      ov.style.top  = (window.innerHeight-MINI_H-MINI_M)+'px';
+      ov.style.left = (window.innerWidth-MINI_W-MINI_M)+'px';
+    } else sync();
+  },{passive:true});
+
+  btn.addEventListener('click', function(){
+    isClosed=true; ov.style.display='none'; obs.disconnect();
+  });
+
+  requestAnimationFrame(function(){ requestAnimationFrame(sync); });
+}
+
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 340 432" xmlns="http://www.w3.org/2000/svg"
+     width="100%" aria-label="持統天皇の家系図">
+
+  <!-- ══ 接続線（ノードより先に描く） ══ -->
+
+  <!-- ① 舒明→天智（親子） -->
+  <path d="M 170,49 L 170,74 L 90,74 L 90,97"
+        stroke="#9B9188" stroke-width="1.5" fill="none"/>
+
+  <!-- ② 舒明→天武（親子） -->
+  <path d="M 170,74 L 250,74 L 250,191"
+        stroke="#9B9188" stroke-width="1.5" fill="none"/>
+
+  <!-- ③ 天智→天武（兄弟・赤破線） -->
+  <path d="M 145,122 L 210,122 L 210,191"
+        stroke="#9C2D2D" stroke-width="1.5"
+        stroke-dasharray="4 3" fill="none"/>
+  <rect x="152" y="109" width="36" height="15" rx="3" fill="#FBF7F0"/>
+  <text x="170" y="120" text-anchor="middle"
+        font-size="10" font-weight="600" fill="#9C2D2D"
+        font-family="Hiragino Sans,Yu Gothic,sans-serif">兄弟</text>
+
+  <!-- ④ 天智→持統（親子） -->
+  <path d="M 90,147 L 90,191"
+        stroke="#9B9188" stroke-width="1.5" fill="none"/>
+
+  <!-- ⑤ 持統─天武（夫婦・青） -->
+  <path d="M 135,212 L 205,212"
+        stroke="#4A7DA8" stroke-width="1.5" fill="none"/>
+  <rect x="151" y="201" width="38" height="15" rx="3" fill="#FBF7F0"/>
+  <text x="170" y="212" text-anchor="middle"
+        font-size="10" fill="#4A7DA8"
+        font-family="Hiragino Sans,Yu Gothic,sans-serif">夫婦</text>
+
+  <!-- ⑥ 夫婦中点→草壁（親子） -->
+  <path d="M 170,212 L 170,290"
+        stroke="#9B9188" stroke-width="1.5" fill="none"/>
+
+  <!-- ⑦ 草壁→文武（親子） -->
+  <path d="M 170,332 L 170,380"
+        stroke="#9B9188" stroke-width="1.5" fill="none"/>
+
+  <!-- ══ ノード ══ -->
+
+  <!-- 舒明天皇 -->
+  <rect x="125" y="7" width="90" height="42" rx="7"
+        fill="white" stroke="#E5DFD2" stroke-width="1.5"/>
+  <text x="170" y="24" text-anchor="middle"
+        font-size="13" font-weight="600" fill="#2C2A24"
+        font-family="Hiragino Sans,Yu Gothic,sans-serif">舒明天皇</text>
+  <text x="170" y="39" text-anchor="middle"
+        font-size="10" fill="#6B665A"
+        font-family="Hiragino Sans,Yu Gothic,sans-serif">天智・天武の父</text>
+
+  <!-- 天智天皇 -->
+  <rect x="35" y="97" width="110" height="50" rx="7"
+        fill="white" stroke="#E5DFD2" stroke-width="1.5"/>
+  <text x="90" y="113" text-anchor="middle"
+        font-size="13" font-weight="600" fill="#2C2A24"
+        font-family="Hiragino Sans,Yu Gothic,sans-serif">天智天皇（父）</text>
+  <text x="90" y="127" text-anchor="middle"
+        font-size="10" fill="#6B665A"
+        font-family="Hiragino Sans,Yu Gothic,sans-serif">天武の兄</text>
+  <text x="90" y="139" text-anchor="middle"
+        font-size="10" fill="#6B665A"
+        font-family="Hiragino Sans,Yu Gothic,sans-serif">× 遠智娘</text>
+
+  <!-- 持統天皇（本人・ハイライト） -->
+  <rect x="45" y="191" width="90" height="42" rx="7"
+        fill="#D9C5E0" stroke="#9C2D2D" stroke-width="2"/>
+  <text x="90" y="208" text-anchor="middle"
+        font-size="14" font-weight="700" fill="#9C2D2D"
+        font-family="Hiragino Sans,Yu Gothic,sans-serif">持統天皇</text>
+  <text x="90" y="224" text-anchor="middle"
+        font-size="10" fill="#6B665A"
+        font-family="Hiragino Sans,Yu Gothic,sans-serif">本人 ★</text>
+
+  <!-- 天武天皇 -->
+  <rect x="205" y="191" width="90" height="42" rx="7"
+        fill="white" stroke="#E5DFD2" stroke-width="1.5"/>
+  <text x="250" y="208" text-anchor="middle"
+        font-size="13" font-weight="600" fill="#2C2A24"
+        font-family="Hiragino Sans,Yu Gothic,sans-serif">天武天皇（夫）</text>
+  <text x="250" y="224" text-anchor="middle"
+        font-size="10" fill="#6B665A"
+        font-family="Hiragino Sans,Yu Gothic,sans-serif">天智の弟</text>
+
+  <!-- 草壁皇子 -->
+  <rect x="125" y="290" width="90" height="42" rx="7"
+        fill="white" stroke="#E5DFD2" stroke-width="1.5"/>
+  <text x="170" y="307" text-anchor="middle"
+        font-size="13" font-weight="600" fill="#2C2A24"
+        font-family="Hiragino Sans,Yu Gothic,sans-serif">草壁皇子</text>
+  <text x="170" y="321" text-anchor="middle"
+        font-size="10" fill="#6B665A"
+        font-family="Hiragino Sans,Yu Gothic,sans-serif">子・早世 ✝</text>
+
+  <!-- 文武天皇 -->
+  <rect x="125" y="380" width="90" height="42" rx="7"
+        fill="white" stroke="#E5DFD2" stroke-width="1.5"/>
+  <text x="170" y="397" text-anchor="middle"
+        font-size="13" font-weight="600" fill="#2C2A24"
+        font-family="Hiragino Sans,Yu Gothic,sans-serif">文武天皇</text>
+  <text x="170" y="411" text-anchor="middle"
+        font-size="10" fill="#6B665A"
+        font-family="Hiragino Sans,Yu Gothic,sans-serif">孫</text>
+
+</svg>
