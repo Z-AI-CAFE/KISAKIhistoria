@@ -147,6 +147,17 @@ function scrollToResults(){
   }
 }
 
+// 事件チップ選択後に事件カード（または人物一覧）へスクロールする
+function scrollToEventSection(){
+  const eventInfo = document.getElementById('event-info');
+  const target = (eventInfo && eventInfo.classList.contains('visible'))
+    ? eventInfo
+    : document.getElementById('summary');
+  if(target){
+    target.scrollIntoView({behavior:'smooth', block:'start'});
+  }
+}
+
 function setQueryAndRefresh(q){
   const input = document.getElementById('q');
   input.value = q;
@@ -156,7 +167,7 @@ function setQueryAndRefresh(q){
     x.classList.toggle('active', x.dataset.q === currentQuery);
   });
   render();
-  window.scrollTo({top:0, behavior:'smooth'});
+  scrollToEventSection();
 }
 
 function renderEventInfo(){
