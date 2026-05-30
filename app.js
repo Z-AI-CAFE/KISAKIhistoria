@@ -597,6 +597,13 @@ c.classList.toggle('active', c.dataset.q === currentQuery);
 render();
 });
 
+input.addEventListener('keydown', e => {
+if(e.key === 'Enter' && currentQuery){
+scrollToEventSection();
+input.blur();
+}
+});
+
 clearBtn.addEventListener('click', () => {
 input.value = '';
 currentQuery = '';
