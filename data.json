@@ -354,9 +354,9 @@
   "youtube_start": 0,
   "has_family_tree": false,
   "related_videos": [
-    {"name": "藤原定子", "youtube_id": "3sv_sjwMMeY", "url": "https://www.youtube.com/watch?v=3sv_sjwMMeY"},
-    {"name": "藤原彰子", "youtube_id": "n3uAtkZnlUA", "url": "https://www.youtube.com/watch?v=n3uAtkZnlUA"},
-    {"name": "三条天皇", "youtube_id": "SkBljlopN7c", "url": "https://www.youtube.com/watch?v=SkBljlopN7c"}
+{"name": "藤原定子", "youtube_id": "n3uAtkZnlUA", "url": "https://www.youtube.com/watch?v=n3uAtkZnlUA"},
+{"name": "藤原彰子", "youtube_id": "SkBljlopN7c", "url": "https://www.youtube.com/watch?v=SkBljlopN7c"},
+{"name": "三条天皇", "youtube_id": "LYpJHKB5oQM", "url": "https://www.youtube.com/watch?v=LYpJHKB5oQM"}
   ],
   "birth": "977",
   "death": "1020",
