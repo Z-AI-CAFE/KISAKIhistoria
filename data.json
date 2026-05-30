@@ -344,6 +344,42 @@
     ],
     "summary": "藤原道長の娘で一条天皇の中宮。紫式部を女房として仕えさせ、源氏物語の誕生を支えた。後一条・後朱雀天皇の母。"
   },
+ {
+  "id": "motoko",
+  "name": "藤原元子",
+  "reading": "ふじわらのもとこ",
+  "title": "藤原元子【ゆっくり解説】",
+  "url": "https://www.youtube.com/watch?v=3sv_sjwMMeY",
+  "youtube_id": "3sv_sjwMMeY",
+  "youtube_start": 0,
+  "has_family_tree": false,
+  "related_videos": [
+    {"name": "藤原定子", "youtube_id": "3sv_sjwMMeY", "url": "https://www.youtube.com/watch?v=3sv_sjwMMeY"},
+    {"name": "藤原彰子", "youtube_id": "n3uAtkZnlUA", "url": "https://www.youtube.com/watch?v=n3uAtkZnlUA"},
+    {"name": "三条天皇", "youtube_id": "SkBljlopN7c", "url": "https://www.youtube.com/watch?v=SkBljlopN7c"}
+  ],
+  "birth": "977",
+  "death": "1020",
+  "era": "平安中期",
+  "country": "日本",
+  "events": [
+    "長徳の変",
+    "三条天皇即位",
+    "摂関政治"
+  ],
+  "keywords": [
+    "藤原道兼",
+    "一条天皇",
+    "三条天皇",
+    "藤原道長"
+  ],
+  "role": "女御",
+  "themes": [
+    "摂関政治",
+    "平安後宮"
+  ],
+  "summary": "藤原道兼の娘で一条天皇の女御。父・道兼の早世と道長の台頭により後宮での地位を失うが、その後三条天皇の寵愛も受けた。定子・彰子と同時代に宮廷を生きた悲運の女性。"
+}
   {
     "id": "teishi",
     "name": "藤原定子",

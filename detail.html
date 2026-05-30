@@ -100,6 +100,31 @@ html,body{margin:0;padding:0;background:var(--bg);color:var(--text);
 .leg-dashed{background:repeating-linear-gradient(90deg,#4A7DA8 0,#4A7DA8 5px,transparent 5px,transparent 8px);}
 .leg-red{background:repeating-linear-gradient(90deg,#9C2D2D 0,#9C2D2D 4px,transparent 4px,transparent 7px);}
 
+/* ── 関連動画 ── */
+.related-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+}
+.related-card{
+  text-decoration:none;color:var(--text);
+  background:var(--bg-card);
+  border:1px solid var(--border);
+  border-radius:10px;
+  overflow:hidden;
+  transition:box-shadow .15s;
+}
+.related-card:hover{box-shadow:0 3px 12px rgba(0,0,0,.12);}
+.related-thumb{
+  width:100%;aspect-ratio:16/9;
+  object-fit:cover;display:block;
+  background:#ddd;
+}
+.related-name{
+  padding:6px 8px;
+  font-size:12px;font-weight:600;
+}
+
 /* ── サマリー ── */
 .summary-box{font-size:14px;line-height:1.8;color:var(--text);}
 
@@ -198,6 +223,7 @@ function renderPage(item){
 
   var hasVideo   = !!item.youtube_id;
   var hasTree    = !!item.has_family_tree;
+  var hasRelated = !!(item.related_videos && item.related_videos.length);
   var ytStart    = item.youtube_start || 0;
   var ytSrc      = hasVideo
     ? 'https://www.youtube.com/embed/'+item.youtube_id+'?start='+ytStart+'&rel=0&enablejsapi=1'
@@ -240,6 +266,21 @@ function renderPage(item){
   if(eventsHtml){
     html += '<div class="section-label">キーワード</div>'
       + '<div class="events-box">'+eventsHtml+'</div>';
+  }
+
+  /* 関連動画 */
+  if(hasRelated){
+    html += '<div class="section-label">関連動画</div>'
+      + '<div class="related-grid">';
+    item.related_videos.forEach(function(rv){
+      var link = rv.url || ('https://www.youtube.com/watch?v=' + rv.youtube_id);
+      var thumb = 'https://img.youtube.com/vi/' + rv.youtube_id + '/mqdefault.jpg';
+      html += '<a class="related-card" href="'+link+'" target="_blank" rel="noopener">'
+        + '<img class="related-thumb" src="'+thumb+'" alt="'+rv.name+'" loading="lazy">'
+        + '<div class="related-name">'+rv.name+'</div>'
+        + '</a>';
+    });
+    html += '</div>';
   }
 
   /* YouTubeリンク */
